@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucky Casino - European Roulette</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Casino Navbar -->
+    <nav class="casino-navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <span class="logo-text"><i class="fas fa-dice"></i>IMPERIAL SPIN</span>
+            </div>
+            
+            <ul class="navbar-menu">
+                <li><a href="#" class="nav-link">Home</a></li>
+                <li><a href="#" class="nav-link">Games</a></li>
+                <li><a href="#" class="nav-link">Live Casino</a></li>
+                <li><a href="#" class="nav-link">Promotions</a></li>
+                <li><a href="#" class="nav-link">VIP</a></li>
+                <li><a href="#" class="nav-link">Support</a></li>
+            </ul>
+            
+            <div class="navbar-right">
+                <div class="user-profile">
+                    <div class="user-avatar">U</div>
+                </div>
+                <button class="nav-btn settings-btn"><i class="fas fa-cog"></i> Settings</button>
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Total bet counter -->
+        <div class="total-bet-counter">
+            <span class="total-bet-label">Total Bet</span>
+            <span class="total-bet-amount" id="total-bet-amount">$0</span>
+        </div>
+
+        <div class="roulette-table">
+            <!-- Main betting grid -->
+            <div class="betting-grid">
+                <!-- Zero section -->
+                <div class="zero-section">
+                    <div class="bet-cell number-cell zero" data-number="0" data-color="green">
+                        0
+                    </div>
+                </div>
+
+                <!-- Main numbers grid -->
+                <div class="numbers-grid">
+                    <!-- Row 1 (3, 6, 9, ..., 36) -->
+                    <div class="number-row">
+                        <div class="bet-cell number-cell black" data-number="3" data-color="black">3</div>
+                        <div class="bet-cell number-cell red" data-number="6" data-color="red">6</div>
+                        <div class="bet-cell number-cell black" data-number="9" data-color="black">9</div>
+                        <div class="bet-cell number-cell red" data-number="12" data-color="red">12</div>
+                        <div class="bet-cell number-cell black" data-number="15" data-color="black">15</div>
+                        <div class="bet-cell number-cell red" data-number="18" data-color="red">18</div>
+                        <div class="bet-cell number-cell black" data-number="21" data-color="black">21</div>
+                        <div class="bet-cell number-cell red" data-number="24" data-color="red">24</div>
+                        <div class="bet-cell number-cell black" data-number="27" data-color="black">27</div>
+                        <div class="bet-cell number-cell red" data-number="30" data-color="red">30</div>
+                        <div class="bet-cell number-cell black" data-number="33" data-color="black">33</div>
+                        <div class="bet-cell number-cell red" data-number="36" data-color="red">36</div>
+                    </div>
+
+                    <!-- Row 2 (2, 5, 8, ..., 35) -->
+                    <div class="number-row">
+                        <div class="bet-cell number-cell red" data-number="2" data-color="red">2</div>
+                        <div class="bet-cell number-cell black" data-number="5" data-color="black">5</div>
+                        <div class="bet-cell number-cell red" data-number="8" data-color="red">8</div>
+                        <div class="bet-cell number-cell black" data-number="11" data-color="black">11</div>
+                        <div class="bet-cell number-cell red" data-number="14" data-color="red">14</div>
+                        <div class="bet-cell number-cell black" data-number="17" data-color="black">17</div>
+                        <div class="bet-cell number-cell red" data-number="20" data-color="red">20</div>
+                        <div class="bet-cell number-cell black" data-number="23" data-color="black">23</div>
+                        <div class="bet-cell number-cell red" data-number="26" data-color="red">26</div>
+                        <div class="bet-cell number-cell black" data-number="29" data-color="black">29</div>
+                        <div class="bet-cell number-cell red" data-number="32" data-color="red">32</div>
+                        <div class="bet-cell number-cell black" data-number="35" data-color="black">35</div>
+                    </div>
+
+                    <!-- Row 3 (1, 4, 7, ..., 34) -->
+                    <div class="number-row">
+                        <div class="bet-cell number-cell black" data-number="1" data-color="black">1</div>
+                        <div class="bet-cell number-cell red" data-number="4" data-color="red">4</div>
+                        <div class="bet-cell number-cell black" data-number="7" data-color="black">7</div>
+                        <div class="bet-cell number-cell red" data-number="10" data-color="red">10</div>
+                        <div class="bet-cell number-cell black" data-number="13" data-color="black">13</div>
+                        <div class="bet-cell number-cell red" data-number="16" data-color="red">16</div>
+                        <div class="bet-cell number-cell black" data-number="19" data-color="black">19</div>
+                        <div class="bet-cell number-cell red" data-number="22" data-color="red">22</div>
+                        <div class="bet-cell number-cell black" data-number="25" data-color="black">25</div>
+                        <div class="bet-cell number-cell red" data-number="28" data-color="red">28</div>
+                        <div class="bet-cell number-cell black" data-number="31" data-color="black">31</div>
+                        <div class="bet-cell number-cell red" data-number="34" data-color="red">34</div>
+                    </div>
+                </div>
+
+                <!-- Column bets (2 to 1) -->
+                <div class="column-bets">
+                    <div class="bet-cell column-bet" data-bet="column-1">2to1</div>
+                    <div class="bet-cell column-bet" data-bet="column-2">2to1</div>
+                    <div class="bet-cell column-bet" data-bet="column-3">2to1</div>
+                </div>
+            </div>
+
+            <!-- Outside bets section -->
+            <div class="outside-bets">
+                <!-- Dozen bets -->
+                <div class="dozen-bets">
+                    <div class="bet-cell dozen-bet" data-bet="1st-12">1st 12</div>
+                    <div class="bet-cell dozen-bet" data-bet="2nd-12">2nd 12</div>
+                    <div class="bet-cell dozen-bet" data-bet="3rd-12">3rd 12</div>
+                </div>
+
+                <!-- Even money bets -->
+                <div class="even-money-bets">
+                    <div class="bet-cell even-money-bet" data-bet="1-18">1-18</div>
+                    <div class="bet-cell even-money-bet" data-bet="even">EVEN</div>
+                    <div class="bet-cell even-money-bet red-bet" data-bet="red">RED</div>
+                    <div class="bet-cell even-money-bet black-bet" data-bet="black">BLACK</div>
+                    <div class="bet-cell even-money-bet" data-bet="odd">ODD</div>
+                    <div class="bet-cell even-money-bet" data-bet="19-36">19-36</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chips section -->
+        <div class="chips-container">
+            <button class="clear-bet-button" id="clear-bet-button">Clear Bet</button>
+            <div class="chip" data-value="1">$1</div>
+            <div class="chip" data-value="5">$5</div>
+            <div class="chip" data-value="10">$10</div>
+            <div class="chip" data-value="25">$25</div>
+            <div class="chip" data-value="50">$50</div>
+            <div class="chip" data-value="100">$100</div>
+            <div class="chip" data-value="500">$500</div>
+            <div class="chip" data-value="1000">$1000</div>
+            <button class="spin-button" id="spin-button">SPIN</button>
+        </div>
+    </div>
+
+    <!-- Settings Side Panel -->
+    <div class="settings-panel" id="settings-panel">
+        <div class="settings-panel-header">
+            <h2><i class="fas fa-cog"></i> Settings</h2>
+            <button class="settings-close-btn" id="settings-close-btn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="settings-panel-content">
+            <!-- User Information Section -->
+            <div class="settings-section collapsed">
+                <h3 class="settings-section-title collapsible-header">
+                    <span><i class="fas fa-user"></i> User Information</span>
+                    <span class="collapse-icon">▼</span>
+                </h3>
+                <div class="settings-section-content">
+                    <div class="settings-item">
+                        <label>Username</label>
+                        <input type="text" class="settings-input" value="Alex_Martinez" readonly>
+                    </div>
+                    <div class="settings-item">
+                        <label>Email</label>
+                        <input type="email" class="settings-input" value="alex.martinez@email.com" readonly>
+                    </div>
+                <div class="settings-item">
+                    <label>Account Balance</label>
+                    <div class="balance-display">$10,000.00</div>
+                </div>
+                <div class="settings-item">
+                    <label>Member Since</label>
+                    <div class="info-display">January 2024</div>
+                </div>
+                <div class="settings-item">
+                    <label>VIP Level</label>
+                    <div class="vip-badge">Gold</div>
+                </div>
+                </div>
+            </div>
+
+            <!-- Payment Method Section -->
+            <div class="settings-section collapsed">
+                <h3 class="settings-section-title collapsible-header">
+                    <span><i class="fas fa-credit-card"></i> Payment Methods</span>
+                    <span class="collapse-icon">▼</span>
+                </h3>
+                <div class="settings-section-content">
+                <div class="payment-methods">
+                    <div class="payment-method-card">
+                        <div class="payment-method-header">
+                            <div class="payment-method-title">
+                                <span class="payment-icon"><i class="fas fa-credit-card"></i></span>
+                                <span class="payment-type">Debit Card</span>
+                            </div>
+                            <button class="payment-remove-btn">Remove</button>
+                        </div>
+                        <div class="payment-method-details">
+                            <div class="card-number">5678 1*** **** ****</div>
+                        </div>
+                    </div>
+                    <button class="add-payment-btn">+ Add Payment Method</button>
+                </div>
+                </div>
+            </div>
+
+            <!-- Game Settings Section -->
+            <div class="settings-section collapsed">
+                <h3 class="settings-section-title collapsible-header">
+                    <span><i class="fas fa-gamepad"></i> Game Settings</span>
+                    <span class="collapse-icon">▼</span>
+                </h3>
+                <div class="settings-section-content">
+                <div class="settings-item">
+                    <label>
+                        <input type="checkbox" class="settings-checkbox" checked>
+                        Sound Effects
+                    </label>
+                </div>
+                <div class="settings-item">
+                    <label>
+                        <input type="checkbox" class="settings-checkbox" checked>
+                        Background Music
+                    </label>
+                </div>
+                <div class="settings-item">
+                    <label>Sound Volume</label>
+                    <input type="range" class="settings-slider" min="0" max="100" value="75">
+                </div>
+                <div class="settings-item">
+                    <label>Animation Speed</label>
+                    <select class="settings-select">
+                        <option>Fast</option>
+                        <option selected>Normal</option>
+                        <option>Slow</option>
+                    </select>
+                </div>
+                <div class="settings-item">
+                    <label>Auto-bet on Win</label>
+                    <input type="checkbox" class="settings-checkbox">
+                </div>
+                </div>
+            </div>
+
+            <!-- Account Settings Section -->
+            <div class="settings-section collapsed">
+                <h3 class="settings-section-title collapsible-header">
+                    <span><i class="fas fa-lock"></i> Account Settings</span>
+                    <span class="collapse-icon">▼</span>
+                </h3>
+                <div class="settings-section-content">
+                <div class="settings-item">
+                    <label>Two-Factor Authentication</label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" class="toggle-input">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="settings-item">
+                    <label>Email Notifications</label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" class="toggle-input" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="settings-item">
+                    <label>SMS Notifications</label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" class="toggle-input">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <button class="settings-action-btn">Change Password</button>
+                </div>
+            </div>
+
+            <!-- Betting Limits Section -->
+            <div class="settings-section collapsed">
+                <h3 class="settings-section-title collapsible-header">
+                    <span><i class="fas fa-coins"></i> Betting Limits</span>
+                    <span class="collapse-icon">▼</span>
+                </h3>
+                <div class="settings-section-content">
+                <div class="settings-item">
+                    <label>Minimum Bet</label>
+                    <input type="number" class="settings-input" value="1" min="1">
+                </div>
+                <div class="settings-item">
+                    <label>Maximum Bet</label>
+                    <input type="number" class="settings-input" value="10000" min="1">
+                </div>
+                <div class="settings-item">
+                    <label>Daily Deposit Limit</label>
+                    <input type="number" class="settings-input" value="5000" min="0">
+                </div>
+                <div class="settings-item">
+                    <label>Daily Loss Limit</label>
+                    <input type="number" class="settings-input" value="2000" min="0">
+                </div>
+                </div>
+            </div>
+
+            <!-- Preferences Section -->
+            <div class="settings-section">
+                <h3 class="settings-section-title collapsible-header">
+                    <span><i class="fas fa-sliders-h"></i> Preferences</span>
+                    <span class="collapse-icon">▼</span>
+                </h3>
+                <div class="settings-section-content">
+                <div class="settings-item">
+                    <label>Language</label>
+                    <select class="settings-select">
+                        <option selected>English</option>
+                        <option>Spanish</option>
+                        <option>French</option>
+                        <option>German</option>
+                    </select>
+                </div>
+                <div class="settings-item">
+                    <label>Currency</label>
+                    <select class="settings-select">
+                        <option selected>USD ($)</option>
+                        <option>EUR (€)</option>
+                        <option>GBP (£)</option>
+                        <option>JPY (¥)</option>
+                    </select>
+                </div>
+                <div class="settings-item">
+                    <label>Theme</label>
+                    <select class="settings-select">
+                        <option selected>Dark</option>
+                        <option>Light</option>
+                        <option>Auto</option>
+                    </select>
+                </div>
+                </div>
+            </div>
+
+            <!-- Actions Section -->
+            <div class="settings-section">
+                <h3 class="settings-section-title collapsible-header">
+                    <span><i class="fas fa-tools"></i> Actions</span>
+                    <span class="collapse-icon">▼</span>
+                </h3>
+                <div class="settings-section-content">
+                <div class="settings-actions">
+                    <button class="settings-action-btn primary">Save Changes</button>
+                    <button class="settings-action-btn secondary">Logout</button>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Panel Overlay -->
+    <div class="settings-overlay" id="settings-overlay"></div>
+
+    <!-- Roulette Video Overlay -->
+    <div class="video-overlay" id="video-overlay">
+        <video id="roulette-video" class="roulette-video" src="assets/roulette-no-audio.mp4" muted preload="auto" playsinline></video>
+        <div class="you-lose-backdrop" id="you-lose-backdrop"></div>
+        <div class="you-lose-text" id="you-lose-text">
+            YOU LOSE
+            <div class="you-lose-amount" id="you-lose-amount"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
